@@ -8,7 +8,6 @@ const SEARCH_URL = 'https://jsearch.p.rapidapi.com/search'
 const JOB_DETAILS_SEARCH_URL = 'https://jsearch.p.rapidapi.com/job-details'
 
 export async function searchingHandler(query: any) {
-    console.log(Headers)
     const options = {
         method: 'GET',
         url: SEARCH_URL,
