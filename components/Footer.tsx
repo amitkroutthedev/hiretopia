@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MdCopyright } from "react-icons/md";
 import { VscGithub } from "react-icons/vsc";
 
@@ -8,9 +9,9 @@ function Footer() {
             <MdCopyright/>
             <p>Made by Amit Kumar Rout</p>
         </div>
-        <div>
+        <Link href={"https://github.com/amitkroutthedev/hiretopia"}>
             <VscGithub/>
-        </div>
+        </Link>
     </footer>
   )
 }

@@ -24,6 +24,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+      <link rel="icon" href="https://raw.githubusercontent.com/amitkroutthedev/hiretopia/main/assets/added_-removebg-preview.png" sizes="any" />
         <body className={inter.className}>
         <Header />
         <Toaster position="top-right" />
