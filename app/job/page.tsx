@@ -102,11 +102,11 @@ export default function Home() {
   };
   return (
     <>
-    <div className="p-4 border-2 w-full">
+    <div className="p-4 w-full bg-gray-900 overflow-y-auto">
       <div className="mx-auto">
         <div className="mb-8 flex flex-row space-x-3 items-center justify-between">
           <Input
-            className="flex-1 rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-gray-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+            className="flex-1 rounded-md px-4 py-2 text-sm focus:outline-none w-full bg-gray-800 border-gray-700 text-gray-300 pl-1"
             placeholder="Search job postings..."
             value={query}
             onChange={(e) => updateQuery(e.target.value)}
@@ -115,22 +115,22 @@ export default function Home() {
           <Button
             disabled={loader}
             onClick={searchHandler}
-            className="bg-[#2d6a4f]"
+            className="bg-gray-700 hover:bg-gray-600 text-gray-200"
           >
             {loader ? <CircularLoader /> : "Search"}
           </Button>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[300px_1fr]">
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle>Advanced Filters</CardTitle>
+                <CardTitle className="text-gray-200">Advanced Filters</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div>
                     <Label
-                      className="mb-2 block text-sm font-medium"
+                      className="mb-2 block text-sm font-medium text-gray-400"
                       htmlFor="remote-job"
                     >
                       Job Type
@@ -139,21 +139,21 @@ export default function Home() {
                       onValueChange={(e) => updateRemoteJob(e)}
                       defaultValue={isRemoteJob}
                      // value={isRemoteJob}
-                      className="flex space-y-1"
+                      className="flex space-y-1 text-gray-300"
                     >
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="true" id="option-one" />
+                        <RadioGroupItem value="true" id="option-one" className="text-gray-300" />
                         <Label htmlFor="option-one">Remote</Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="false" id="option-two" />
+                        <RadioGroupItem value="false" id="option-two" className="text-gray-300" />
                         <Label htmlFor="option-two">Non Remote</Label>
                       </div>
                     </RadioGroup>
                   </div>
                   <div>
                     <Label
-                      className="mb-2 block text-sm font-medium"
+                      className="mb-2 block text-sm font-medium text-gray-400"
                       htmlFor="employment-type"
                     >
                       Type of Employment
@@ -177,7 +177,7 @@ export default function Home() {
                   </div>
                   <div>
                     <Label
-                      className="mb-2 block text-sm font-medium"
+                      className="mb-2 block text-sm font-medium  text-gray-400"
                       htmlFor="employment-type"
                     >
                       Date Posted
@@ -202,7 +202,7 @@ export default function Home() {
                   </div>
                   <div>
                     <Label
-                      className="mb-2 block text-sm font-medium"
+                      className="mb-2 block text-sm font-medium  text-gray-400"
                       htmlFor="experience"
                     >
                       Experience
@@ -240,13 +240,13 @@ export default function Home() {
                 ) : (
                   <>
                     <Button
-                      className="w-full bg-[#2d6a4f]"
+                      className="w-full bg-gray-700 hover:bg-gray-600 text-gray-200"
                       onClick={() => changeFilterHandler()}
                     >
                       Apply Filters
                     </Button>
                     <Button
-                      className="w-full bg-[#d8f3dc]"
+                      className="w-full border-gray-600 hover:text-gray-300 hover:bg-gray-700 text-gray-800"
                       variant={"outline"}
                       onClick={() => clearHandler()}
                     >
@@ -258,16 +258,16 @@ export default function Home() {
             </Card>
           </div>
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-transparent border-none">
               <CardHeader>
-                <CardTitle>Job Postings</CardTitle>
+                <CardTitle className="text-white">Job Postings</CardTitle>
               </CardHeader>
               <CardContent>
                 {totalJobRes.length !== 0 ? (
                   <CardCollection completeJobList={totalJobRes} setLoader={setLoader}/>
                 ) : (
                   <div>
-                    <p className="text-center">No jobs found</p>
+                    <p className="text-center text-gray-200">No jobs found...search some jobs</p>
                   </div>
                 )}
               </CardContent>

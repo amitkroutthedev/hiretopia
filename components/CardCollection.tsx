@@ -8,7 +8,7 @@ import { searchedJobDetailsHandler } from "@/axios/request";
 import { useQueryStore } from "@/store/store";
 import { useRouter } from "next/navigation";
 import Backdrop from "./Backdrop";
-import { useState } from "react";
+import { MapPinIcon } from "lucide-react"
 
 interface Job {
   job_id: string;
@@ -31,10 +31,9 @@ function CardCollection({ completeJobList,setLoader }: { completeJobList: Job[],
   const getJobDetailsHandler=async(searchId:string)=>{
     setLoader(true)
     const jobDetailsRes = await searchedJobDetailsHandler(searchId);
-    console.log(jobDetailsRes.data)
     if(jobDetailsRes.status==="OK"){
       updateSelectedJobRes(jobDetailsRes.data)
-      router.push(`job-details?search=${jobDetailsRes.data[0].job_id}`)
+      router.push(`job-details/${jobDetailsRes.data[0].job_id}`)
       setLoader(false)
     }
   }
@@ -45,33 +44,33 @@ function CardCollection({ completeJobList,setLoader }: { completeJobList: Job[],
         let formattedDate = postTimeStamp.toLocaleDateString("en-IN");
         return (
           <div
-            className="bg-[#dde5b6] rounded-md border border-gray-300 p-4 dark:border-gray-600"
+            className="bg-gray-800 border-gray-700  rounded-md border p-4 text-white"
             key={allData.job_id}
           >
-            <h3 className="mb-2 text-lg font-medium">
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">
               {allData.job_title}{" "}
-              <span className="font-thin">({allData.employer_name})</span>
+              <span className="text-sm text-gray-400 mb-2">({allData.employer_name})</span>
             </h3>
-            <div className="mb-4 text-gray-500 dark:text-gray-400">
-              <Badge variant="outline">
-                <GrUserWorker />
-                {allData.job_employment_type}
-              </Badge>
-              <Badge variant="outline">
-                <CgCalendarDates />
-                {formattedDate}
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <LocateIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+            <div className="flex items-center justify-between space-x-2">
+              <div className="flex items-center">
+                <MapPinIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                 <span className="text-sm text-gray-500 dark:text-gray-400">
                   {allData.job_is_remote
                     ? "Remote"
                     : `${allData.job_city},${allData.job_country}`}
                 </span>
               </div>
-                <Button size="sm" className="bg-[#2d6a4f]" onClick={()=>getJobDetailsHandler(allData.job_id)}>
+              <div className="flex items-center text-sm">
+                <CgCalendarDates className="text-sm text-gray-200"/>
+                {formattedDate}
+              </div>
+              </div>
+              <br/>
+            <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-400">
+                  {allData.job_employment_type}
+                  </p>
+                <Button size="sm" className="bg-gray-700 hover:bg-gray-600 text-gray-200" onClick={()=>getJobDetailsHandler(allData.job_id)}>
                   Apply
                 </Button>
             </div>

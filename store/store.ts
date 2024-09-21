@@ -61,7 +61,7 @@ const useQuery: StateCreator<State&Action>=(set) => ({
     updateDatePosted:(dataPosted)=>set(()=>({dataPosted:dataPosted})),
     updateTotalJobRes:(totalJobRes)=>set(()=>({totalJobRes:totalJobRes})),
     updateSelectedJobRes:(selectJobRes)=>set(()=>({selectedJobRes:selectJobRes})),
-    resetStore: () => set(() => ({ ...initialState }))
+    resetStore: () => set(initialState),
 })
 
 export const useQueryStore = create<State & Action>()(
