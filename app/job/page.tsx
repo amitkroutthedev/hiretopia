@@ -75,6 +75,7 @@ export default function Home() {
         query: query,
         page: "1",
         num_pages: "1",
+        country: 'IN',
       };
       if (isRemoteJob) {
         body = { ...body, remote_jobs_only: isRemoteJob };
